@@ -1,0 +1,79 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <title>PC Grafika ThreeJS</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<script src="https://cdn.jsdelivr.net/npm/three@0.119.1/build/three.min.js"></script>
+<script src="./js/threejs/build/three.min.js"></script>
+<script src="./js/threejs/js/controls/OrbitControls.js"></script>
+<script src="./js/threejs/threex.keyboardstate.js"></script>
+<script src="./js/threejs/js/loaders/GLTFLoader.js"></script>
+<script src="./js/threejs/js/loaders/DRACOLoader.js"></script>
+<script src="./js/cannonjs/cannon.min.js"></script>
+<script src="./js/datgui/dat.gui.min.js"></script>
+
+<body>
+<script src="js/ThreeScene.js"></script>
+<div id="nekonecnyVesmir">
+    <div id="menuWrap">
+        <div id="menuController">
+            <div id="menuTitle">
+                <p id="title">PROJECT MOON LANDING</p>
+                <p id="description">choose difficulty</p>
+            </div>
+            <div id="menuButtons">
+                <div class="_menuButton">
+                    <button id="hard">Hard</button>
+                </div>
+                <div class="_menuButton">
+                    <button id="medium">Medium</button>
+                </div>
+                <div class="_menuButton">
+                    <button id="easy">Easy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="leaderboard" class="leaderboard">
+        
+    </div>
+    <div id="info">
+        <div>
+            <p>
+                Pohyb - <u><b>WASD</b></u>
+            </p>
+            <p>
+                Vzlietnutie - <u><b>SPACE</b></u>
+            </p>
+            <p>
+                Zoom kamery - <u><b>KOLEČKO MYŠI</b></u>
+            </p>
+            <p>
+                Reset pozicie rakety - <u><b>R</b></u>
+            </p>
+        </div>
+    </div>
+    <div id="timer">
+        <p id="timerText">Test</p>
+    </div>
+    <div id="final">
+        <p id="finalText">
+            [insert text]
+        </p>
+        <div>
+            <form class="_form" id="form" onsubmit="writeToLeaderboard(document.getElementById('name').value);restart();return false;">
+                <label style="color: white;" for="name">Enter name:</label>
+                <input class="_input" type="text" id="name" name="name">
+                <input id="submit" class="_submit" type="submit" value="Submit">
+            </form>
+        </div>
+        <div class="_finalButton">
+            <button id="finalButton">Menu</button>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
