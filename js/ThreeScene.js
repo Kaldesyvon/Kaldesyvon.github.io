@@ -40,8 +40,8 @@ let hasEnded = false;
 
 // Leaderboard
 let leaderboard = {
-    "brano": 10,
-    "fero": 20,
+    "mima": 10,
+    "brano": 11,
     "stanci": 30,
     "pista": 40,
     "ado": 50,
@@ -82,7 +82,9 @@ let aircraftDryMass = 1.0;
 let maxAircraftSpeed = 2000;
 let bottomEngine
 
-let rotationX = 0, rotationY = 0, rotationZ = 0
+let rotationX = 0,
+    rotationY = 0,
+    rotationZ = 0
 
 //Loaders
 let textureLoader, gltfLoader, dracoLoader;
@@ -108,7 +110,7 @@ function Cube(name, sizeX, sizeY, sizeZ, position, physicalMaterial, visMat, mas
 
     //Add Physical object to universe
     this.sphereShape = new CANNON.Box(new CANNON.Vec3(sizeX / 2, sizeY / 2, sizeZ / 2));
-    this.body = new CANNON.Body({mass: mass, material: physicalMaterial})
+    this.body = new CANNON.Body({ mass: mass, material: physicalMaterial })
     this.body.addShape(this.sphereShape)
     this.body.position.copy(position)
     this.body.linearDamping = 0;
@@ -145,7 +147,7 @@ function Sphere(name, radius, position, physicalMaterial, visualMaterial, mass) 
 
     //Add Physical object to universe
     this.sphereShape = new CANNON.Sphere(radius)
-    this.body = new CANNON.Body({mass: mass, material: physicalMaterial})
+    this.body = new CANNON.Body({ mass: mass, material: physicalMaterial })
     this.body.addShape(this.sphereShape)
     this.body.position.copy(position)
     this.body.linearDamping = 0;
@@ -183,7 +185,7 @@ function SphereWithoutBody(name, radius, position, physicalMaterial, visualMater
 function init() {
     scene = new THREE.Scene();
 
-    renderer = new THREE.WebGLRenderer({antialias: true});
+    renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     gltfLoader = new THREE.GLTFLoader();
@@ -249,7 +251,7 @@ function addObjects() {
 
     //Load rocket
     gltfLoader.load("models/aircraft/rocket.glb",
-        function (gltf) {
+        function(gltf) {
             aircraftAsset = gltf.scene;
             setupRocket(aircraftAsset)
 
@@ -276,7 +278,7 @@ function setupRocket(aircraftAsset) {
     aircraftAsset.position.x = 3.5;
     aircraftAsset.scale.set(10, 10, 10);
 
-    const material = new THREE.MeshLambertMaterial({color: 0xFFFFFF, opacity: 0.1, transparent: true})
+    const material = new THREE.MeshLambertMaterial({ color: 0xFFFFFF, opacity: 0.1, transparent: true })
 
     aircraft = new Cube("aircraft", 20.0, 40.0, 20.0, new CANNON.Vec3(0, 0, 0).copy(startPos), physicalMaterial, material, aircraftDryMass + 1.0);
     aircraft.visual.add(aircraftAsset);
@@ -332,9 +334,9 @@ function initInput() {
     keyboard = new THREEx.KeyboardState();
 
     //Keyboard
-    keyboard.domElement.addEventListener('keydown', function (event) {
+    keyboard.domElement.addEventListener('keydown', function(event) {
         startTimer()
-        if(!hasEnded){
+        if (!hasEnded) {
             if (keyboard.eventMatches(event, 'w') || keyboard.eventMatches(event, 'up')) {
                 onUpPress()
             }
@@ -362,7 +364,7 @@ function initInput() {
         }
     })
 
-    keyboard.domElement.addEventListener('keyup', function (event) {
+    keyboard.domElement.addEventListener('keyup', function(event) {
         if (keyboard.eventMatches(event, 'w') || keyboard.eventMatches(event, 'up')) {
             onUpRelease();
         }
@@ -516,12 +518,12 @@ function updateTimer() {
 function lost() {
     restart()
     intervalSet = false
-    
+
     document.getElementById("info").style.visibility = "hidden";
     document.getElementById("timer").style.visibility = "hidden";
     document.getElementById("final").style.visibility = "visible";
     document.getElementById("leaderboard").style.visibility = "visible";
-    document.getElementById("form").style.visibility = "hidden";    
+    document.getElementById("form").style.visibility = "hidden";
     document.getElementById("finalText").innerHTML = "You lost!";
     dat.GUI.toggleHide();
 }
@@ -713,7 +715,7 @@ function win(time) {
     dat.GUI.toggleHide();
 }
 
-function createRow(index, name, score){
+function createRow(index, name, score) {
     let row = document.createElement('div');
     row.setAttribute("class", "row")
 
@@ -725,7 +727,7 @@ function createRow(index, name, score){
     return row;
 }
 
-function printLeaderboard(){
+function printLeaderboard() {
     let lb_el = document.getElementById("leaderboard")
     lb_el.innerHTML = ''
 
@@ -791,7 +793,7 @@ function onMouseWheel(e) {
         cameraDistance -= cameraZoomSpeed;
 }
 
-function startTimer(){
+function startTimer() {
     if (!intervalSet)
         timerInterval = setInterval(updateTimer, 1000);
     intervalSet = true
