@@ -40,8 +40,8 @@ let hasEnded = false;
 
 // Leaderboard
 let leaderboard = {
-    "mima": 10,
-    "brano": 11,
+    "brano": 10,
+    "mima": 11,
     "stanci": 30,
     "pista": 40,
     "ado": 50,
