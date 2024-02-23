@@ -1,1 +1,2 @@
-# pg2022
+# space-race
+Moon landing simulator written in JS using Three.js library 
